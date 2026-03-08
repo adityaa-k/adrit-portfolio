@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import yahooFinance from 'yahoo-finance2';
 import { PortfolioConfigSchema, HistoricalDataSnapshotSchema } from '../src/types/schema.ts';
 import type { MarketDataSnapshot, HistoricalDataPoint, HistoricalDataSnapshot } from '../src/types/schema.ts';
 
@@ -24,9 +23,15 @@ async function main() {
         fs.mkdirSync(outDir, { recursive: true });
     }
 
-    // No API keys required for Yahoo Finance, but we keep dotenv for any future secrets
+    // Load .env.local if present locally, otherwise rely on process.env (like in Actions)
     dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
     dotenv.config();
+
+    const apiKey = process.env.TWELVEDATA_API_KEY;
+    if (!apiKey) {
+        console.error("FATAL: TWELVEDATA_API_KEY environment variable is missing.");
+        process.exit(1);
+    }
 
     const rawConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     const config = PortfolioConfigSchema.parse(rawConfig);
@@ -40,21 +45,40 @@ async function main() {
 
     for (const holding of config.holdings) {
         try {
-            await delay(2000); // 2 second delay between requests to avoid 429 Too Many Requests
+            await delay(8000); // 8 second delay to stay under 8 calls/min limit of Twelve Data
 
-            let yf: any = yahooFinance;
-            if (!yf.quote && yf.default) yf = yf.default;
-            if (!yf.quote && typeof yf === 'function') yf = new yf();
-            const quote = await yf.quote(holding.symbol);
+            let symbol = holding.symbol;
+            let exchange = '';
 
-            const currentPrice = quote.regularMarketPrice ?? holding.buyPrice;
+            // TwelveData prefers "HDFCBANK" and exchange "NSE" instead of "HDFCBANK.NS"
+            if (symbol.endsWith('.NS')) {
+                symbol = symbol.replace('.NS', '');
+                exchange = '&exchange=NSE';
+            } else if (symbol.endsWith('.BO')) {
+                symbol = symbol.replace('.BO', '');
+                exchange = '&exchange=BSE';
+            }
+
+            const url = `https://api.twelvedata.com/quote?symbol=${symbol}${exchange}&apikey=${apiKey}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Twelve Data API error: ${response.status} ${response.statusText}`);
+            }
+
+            const quote = await response.json();
+
+            if (quote.code && quote.status === 'error') {
+                throw new Error(`Twelve Data error: ${quote.message}`);
+            }
+
+            const currentPrice = parseFloat(quote.close) || parseFloat(quote.previous_close) || holding.buyPrice;
             const investedVal = holding.quantity * holding.buyPrice;
             const currentVal = holding.quantity * currentPrice;
             const absPnL = currentVal - investedVal;
             const pctPnL = (absPnL / investedVal) * 100;
 
-            const dChange = quote.regularMarketChange ?? 0;
-            const dChangePct = quote.regularMarketChangePercent ?? 0;
+            const dChange = parseFloat(quote.change) || 0;
+            const dChangePct = parseFloat(quote.percent_change) || 0;
 
             totalInvested += investedVal;
             currentValue += currentVal;
