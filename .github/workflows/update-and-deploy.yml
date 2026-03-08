@@ -1,0 +1,58 @@
+name: Scheduled Data Refresh & Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    # Runs every 15 minutes between 4:00 AM and 10:00 AM UTC on Monday-Friday
+    # (Matches approx. 9:30 AM to 3:30 PM IST)
+    - cron: '5,20,35,50 4-10 * * 1-5'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Generate Market Data Snapshot
+        run: npm run fetch:data
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+
+      - name: Build Dashboard
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

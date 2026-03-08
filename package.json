@@ -1,0 +1,38 @@
+{
+  "name": "adrit-stock-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "fetch:data": "node --experimental-strip-types scripts/fetch-market-data.ts",
+    "build:all": "npm run fetch:data && npm run build"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "dotenv": "^17.3.1",
+    "lucide-react": "^0.378.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^2.12.7",
+    "tailwind-merge": "^2.3.0",
+    "yahoo-finance2": "^2.14.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "tsx": "^4.10.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}
