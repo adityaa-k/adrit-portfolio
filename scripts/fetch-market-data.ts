@@ -40,6 +40,8 @@ async function main() {
 
     for (const holding of config.holdings) {
         try {
+            await delay(2000); // 2 second delay between requests to avoid 429 Too Many Requests
+
             let yf: any = yahooFinance;
             if (!yf.quote && yf.default) yf = yf.default;
             if (!yf.quote && typeof yf === 'function') yf = new yf();

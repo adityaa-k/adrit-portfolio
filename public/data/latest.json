@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-08T17:14:02.575Z",
+  "generatedAt": "2026-03-08T17:38:13.494Z",
   "portfolio": {
     "recipientName": "Adrit",
     "totalInvested": 12752,
@@ -22,7 +22,7 @@
       "percentagePnL": 0,
       "dayChange": 0,
       "dayChangePct": 0,
-      "lastUpdated": "2026-03-08T17:14:02.574Z",
+      "lastUpdated": "2026-03-08T17:38:03.459Z",
       "error": "Failed to get crumb, status 429, statusText: Too Many Requests"
     },
     {
@@ -37,7 +37,7 @@
       "percentagePnL": 0,
       "dayChange": 0,
       "dayChangePct": 0,
-      "lastUpdated": "2026-03-08T17:14:02.574Z",
+      "lastUpdated": "2026-03-08T17:38:05.461Z",
       "error": "Failed to get crumb, status 429, statusText: Too Many Requests"
     },
     {
@@ -52,7 +52,7 @@
       "percentagePnL": 0,
       "dayChange": 0,
       "dayChangePct": 0,
-      "lastUpdated": "2026-03-08T17:14:02.574Z",
+      "lastUpdated": "2026-03-08T17:38:07.471Z",
       "error": "Failed to get crumb, status 429, statusText: Too Many Requests"
     },
     {
@@ -67,7 +67,7 @@
       "percentagePnL": 0,
       "dayChange": 0,
       "dayChangePct": 0,
-      "lastUpdated": "2026-03-08T17:14:02.575Z",
+      "lastUpdated": "2026-03-08T17:38:09.478Z",
       "error": "Failed to get crumb, status 429, statusText: Too Many Requests"
     },
     {
@@ -82,7 +82,7 @@
       "percentagePnL": 0,
       "dayChange": 0,
       "dayChangePct": 0,
-      "lastUpdated": "2026-03-08T17:14:02.575Z",
+      "lastUpdated": "2026-03-08T17:38:11.488Z",
       "error": "Failed to get crumb, status 429, statusText: Too Many Requests"
     },
     {
@@ -97,7 +97,7 @@
       "percentagePnL": 0,
       "dayChange": 0,
       "dayChangePct": 0,
-      "lastUpdated": "2026-03-08T17:14:02.575Z",
+      "lastUpdated": "2026-03-08T17:38:13.494Z",
       "error": "Failed to get crumb, status 429, statusText: Too Many Requests"
     }
   ]
