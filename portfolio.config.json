@@ -1,14 +1,14 @@
 {
     "recipientName": "Adrit",
     "portfolioTitle": "Adrit's Gifted Stocks",
-    "asOfGiftDate": "2024-05-18",
+    "asOfGiftDate": "2026-03-09",
     "holdings": [
         {
             "symbol": "HDFCBANK.NS",
             "companyName": "HDFC Bank",
             "quantity": 3,
-            "buyPrice": 857.05,
-            "buyTimestamp": "2024-05-18T00:00:00Z",
+            "buyPrice": 825.00,
+            "buyTimestamp": "2026-03-09T09:07:13+05:30",
             "exchange": "NSE",
             "currency": "INR",
             "note": "Banking — credit cycle beneficiary"
@@ -17,8 +17,8 @@
             "symbol": "TITAN.NS",
             "companyName": "Titan",
             "quantity": 1,
-            "buyPrice": 4244.60,
-            "buyTimestamp": "2024-05-18T00:00:00Z",
+            "buyPrice": 4160.00,
+            "buyTimestamp": "2026-03-09T09:07:13+05:30",
             "exchange": "NSE",
             "currency": "INR",
             "note": "Aspirational India consumption compounder"
@@ -27,8 +27,8 @@
             "symbol": "BEL.NS",
             "companyName": "Bharat Electronics",
             "quantity": 3,
-            "buyPrice": 468.45,
-            "buyTimestamp": "2024-05-18T00:00:00Z",
+            "buyPrice": 470.00,
+            "buyTimestamp": "2026-03-09T09:07:13+05:30",
             "exchange": "NSE",
             "currency": "INR",
             "note": "Defence indigenisation"
@@ -37,8 +37,8 @@
             "symbol": "SUNPHARMA.NS",
             "companyName": "Sun Pharma",
             "quantity": 1,
-            "buyPrice": 1799.40,
-            "buyTimestamp": "2024-05-18T00:00:00Z",
+            "buyPrice": 1772.90,
+            "buyTimestamp": "2026-03-09T09:07:13+05:30",
             "exchange": "NSE",
             "currency": "INR",
             "note": "USA specialty drugs growth"
@@ -47,8 +47,8 @@
             "symbol": "PIDILITIND.NS",
             "companyName": "Pidilite Industries",
             "quantity": 1,
-            "buyPrice": 1433.80,
-            "buyTimestamp": "2024-05-18T00:00:00Z",
+            "buyPrice": 1400.00,
+            "buyTimestamp": "2026-03-09T09:07:13+05:30",
             "exchange": "NSE",
             "currency": "INR",
             "note": "Fevicol monopoly"
@@ -57,8 +57,8 @@
             "symbol": "CAMS.NS",
             "companyName": "CAMS",
             "quantity": 2,
-            "buyPrice": 648.85,
-            "buyTimestamp": "2024-05-18T00:00:00Z",
+            "buyPrice": 633.50,
+            "buyTimestamp": "2026-03-09T09:07:13+05:30",
             "exchange": "NSE",
             "currency": "INR",
             "note": "MF infrastructure monopoly"
