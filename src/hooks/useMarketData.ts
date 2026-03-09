@@ -10,8 +10,9 @@ export function useMarketData() {
     useEffect(() => {
         // Determine base path correctly for GitHub Pages deployment
         const basePath = import.meta.env.BASE_URL || '/';
-        const latestUrl = `${basePath}data/latest.json`.replace('//', '/');
-        const historyUrl = `${basePath}data/history.json`.replace('//', '/');
+        const cacheBuster = `?t=${new Date().getTime()}`;
+        const latestUrl = `${basePath}data/latest.json${cacheBuster}`.replace('//', '/');
+        const historyUrl = `${basePath}data/history.json${cacheBuster}`.replace('//', '/');
 
         Promise.all([
             fetch(latestUrl).then(res => {
